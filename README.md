@@ -528,6 +528,13 @@ No ambiente de CI, o teste de 1 milhão é ignorado caso a massa local não exis
 
 ---
 
+
+## Licença
+
+Este projeto está disponível sob a **MIT License**. Consulte o arquivo [`LICENSE`](LICENSE) para mais detalhes.
+
+---
+
 ## Autor
 
 **Jaqueline Fernandes de Andrade**
