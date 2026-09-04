@@ -33,6 +33,10 @@ jobs:
         run: |
           python scripts/generate_large_dataset.py
 
+      - name: Generate Excel test data
+        run: |
+          python scripts/generate_excel_data.py
+
       - name: Generate Data Quality metrics
         run: |
           python scripts/generate_quality_report.py
@@ -51,6 +55,7 @@ jobs:
             tests/volume \
             tests/integration \
             tests/data-quality/test_quality_gate.py \
+            tests/data-quality/test_excel_quality.py \
             -v \
             --html=reports/ci-data-quality-report.html \
             --self-contained-html
