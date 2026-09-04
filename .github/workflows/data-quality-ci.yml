@@ -68,6 +68,7 @@ jobs:
             tests/integration \
             tests/data-quality/test_quality_gate.py \
             tests/data-quality/test_excel_quality.py \
+            tests/data-quality/test_txt_quality.py \
             tests/database \
             -v \
             --html=reports/ci-data-quality-report.html \
