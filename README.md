@@ -310,7 +310,7 @@ data/raw/json/transacoes.json
 data/raw/txt/cancelamentos.txt
 ```
 
-A validação de arquivos Excel está prevista no roadmap.
+A validação de arquivos Excel está implementada e coberta por testes automatizados de schema, obrigatoriedade, duplicidade e qualidade dos dados.
 
 ---
 
