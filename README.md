@@ -225,11 +225,14 @@ python -m pytest \
   -v
 ```
 
-Resultado atual de referência:
+Resultado atual no CI:
 
 ```text
 47 passed
+1 skipped (benchmark opcional de 1M)
 ```
+
+Localmente, com o dataset de 1 milhão gerado, o teste adicional também é executado com sucesso.
 
 ---
 
@@ -417,7 +420,7 @@ O repositório também contém:
 docker-compose.yml
 ```
 
-A integração runtime com PostgreSQL e Docker será concluída em uma próxima evolução.
+A integração runtime com PostgreSQL e Docker está implementada e validada por testes automatizados de estrutura, transformação, qualidade e reconciliação.
 
 ---
 
@@ -457,19 +460,11 @@ qa-data-quality-etl-engineering/
 - [x] Pytest
 - [x] GitHub Actions
 - [x] Evidências automatizadas
-- [ ] Excel validation
+- [x] Excel validation
 - [x] PostgreSQL runtime integration
 - [x] Docker integration
 - [x] Database automated tests
 - [x] Dataset de 1 milhão de registros
-
----
-
-## Autor
-
-**Jaqueline Fernandes de Andrade**
-
-Quality Assurance | Quality Engineering | Test Automation | Data Quality
 
 ---
 
@@ -504,3 +499,13 @@ A validação verifica:
 - Data Quality Score de 99%.
 
 No ambiente de CI, o teste de 1 milhão é ignorado caso a massa local não exista, evitando versionamento de arquivos de grande volume.
+
+---
+
+## Autor
+
+**Jaqueline Fernandes de Andrade**
+
+Quality Assurance | Quality Engineering | Test Automation | Data Quality
+
+---
