@@ -228,7 +228,7 @@ python -m pytest \
 Resultado atual de referência:
 
 ```text
-25 passed
+47 passed
 ```
 
 ---
