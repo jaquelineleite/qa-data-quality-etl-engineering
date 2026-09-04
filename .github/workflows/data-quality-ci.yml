@@ -41,6 +41,18 @@ jobs:
         run: |
           python scripts/generate_quality_report.py
 
+      - name: Start PostgreSQL
+        run: |
+          docker compose up -d
+
+      - name: Wait for PostgreSQL
+        run: |
+          python -m scripts.wait_for_postgres
+
+      - name: Load PostgreSQL test data
+        run: |
+          python -m scripts.load_postgres_data
+
       - name: Execute ETL
         run: |
           python -m etl.pipeline
@@ -56,6 +68,7 @@ jobs:
             tests/integration \
             tests/data-quality/test_quality_gate.py \
             tests/data-quality/test_excel_quality.py \
+            tests/database \
             -v \
             --html=reports/ci-data-quality-report.html \
             --self-contained-html
