@@ -458,9 +458,9 @@ qa-data-quality-etl-engineering/
 - [x] GitHub Actions
 - [x] Evidências automatizadas
 - [ ] Excel validation
-- [ ] PostgreSQL runtime integration
-- [ ] Docker integration
-- [ ] Database automated tests
+- [x] PostgreSQL runtime integration
+- [x] Docker integration
+- [x] Database automated tests
 - [ ] Dataset de 1 milhão de registros
 
 ---
