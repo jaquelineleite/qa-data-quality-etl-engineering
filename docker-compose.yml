@@ -5,19 +5,23 @@ services:
     restart: unless-stopped
 
     environment:
-      POSTGRES_USER: qa_user
-      POSTGRES_PASSWORD: qa_password
-      POSTGRES_DB: qa_data_quality
+      POSTGRES_USER: ${DB_USER:-qa_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-qa_password}
+      POSTGRES_DB: ${DB_NAME:-qa_data_quality}
 
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./database/init:/docker-entrypoint-initdb.d
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U qa_user -d qa_data_quality"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USER:-qa_user} -d ${DB_NAME:-qa_data_quality}"
+        ]
       interval: 5s
       timeout: 5s
       retries: 10
