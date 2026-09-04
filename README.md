@@ -461,7 +461,7 @@ qa-data-quality-etl-engineering/
 - [x] PostgreSQL runtime integration
 - [x] Docker integration
 - [x] Database automated tests
-- [ ] Dataset de 1 milhão de registros
+- [x] Dataset de 1 milhão de registros
 
 ---
 
@@ -470,3 +470,37 @@ qa-data-quality-etl-engineering/
 **Jaqueline Fernandes de Andrade**
 
 Quality Assurance | Quality Engineering | Test Automation | Data Quality
+
+---
+
+## Benchmark de Grandes Volumes
+
+Além da massa padrão de 100 mil registros, o projeto possui validação local opcional com **1 milhão de transações sintéticas**.
+
+| Dataset | Registros válidos | Registros inválidos | Data Quality Score | Tempo de referência |
+|---|---:|---:|---:|---:|
+| 100K | 99.000 | 1.000 | 99,0% | 0,1242 s |
+| 1M | 990.000 | 10.000 | 99,0% | 1,2417 s |
+
+Os resultados acima correspondem a uma execução local de referência e podem variar conforme hardware e ambiente.
+
+O dataset de 1 milhão de registros é gerado localmente e está excluído do controle de versão por meio do `.gitignore`.
+
+### Validação de 1 milhão de registros
+
+```bash
+python scripts/generate_large_dataset.py \
+  --records 1000000 \
+  --output transacoes_1m.csv
+
+python -m pytest tests/volume/test_million_records.py -v
+A validação verifica:
+
+- 1.000.000 de registros processados;
+- 990.000 registros válidos;
+- 10.000 registros inválidos únicos;
+- ausência de IDs duplicados;
+- ausência de campos obrigatórios nulos;
+- Data Quality Score de 99%.
+
+No ambiente de CI, o teste de 1 milhão é ignorado caso a massa local não exista, evitando versionamento de arquivos de grande volume.
