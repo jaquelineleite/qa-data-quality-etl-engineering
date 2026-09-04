@@ -29,3 +29,10 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Large generated datasets
+data/generated/*
+!data/generated/.gitkeep
+
+# Versioned quality metrics
+!reports/data-quality-metrics.json
