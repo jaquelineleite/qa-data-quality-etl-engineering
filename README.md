@@ -228,7 +228,7 @@ python -m pytest \
 Resultado atual no CI:
 
 ```text
-55 passed
+60 passed
 1 skipped (benchmark opcional de 1M)
 ```
 
@@ -344,6 +344,24 @@ Teste Automatizado
 ---
 
 ## Gestão de Defeitos
+
+
+### Rastreabilidade de Testes
+
+O projeto possui uma matriz de rastreabilidade automatizada relacionando:
+
+**Requisito → Critério de aceite → Teste automatizado → Evidência → Defeito**
+
+A matriz é validada por Pytest para garantir que os documentos, testes, evidências e defeitos referenciados realmente existam no repositório.
+
+A estrutura representa práticas utilizadas em ferramentas como **Jira, Xray e Octane**, sem simular uma integração real com essas plataformas.
+
+Arquivos principais:
+
+- `docs/traceability-matrix.json`
+- `docs/test-traceability.md`
+- `tests/integration/test_traceability_matrix.py`
+
 
 O projeto contém defeitos de dados documentados:
 
@@ -464,6 +482,7 @@ qa-data-quality-etl-engineering/
 - [x] Pytest
 - [x] GitHub Actions
 - [x] Evidências automatizadas
+- [x] Automated test traceability
 - [x] Excel validation
 - [x] TXT automated validation
 - [x] PostgreSQL runtime integration
