@@ -1,0 +1,85 @@
+[
+  {
+    "requirement_id": "REQ-DQ-001",
+    "requirement": "Validar qualidade e integridade dos dados de clientes",
+    "source_document": "docs/acceptance-criteria.md",
+    "automated_test": "tests/data-quality/test_clientes_quality.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-DQ-002",
+    "requirement": "Detectar transações inválidas e direcioná-las para quarentena",
+    "source_document": "docs/data-quality-strategy.md",
+    "automated_test": "tests/data-quality/test_quality_gate.py",
+    "evidence": "docs/test-execution-001.md",
+    "defects": [
+      "docs/defects/BUG-DATA-001.md",
+      "docs/defects/BUG-DATA-002.md"
+    ]
+  },
+  {
+    "requirement_id": "REQ-DQ-003",
+    "requirement": "Validar qualidade de dados em arquivos Excel",
+    "source_document": "docs/test-plan.md",
+    "automated_test": "tests/data-quality/test_excel_quality.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-DQ-004",
+    "requirement": "Validar estrutura e integridade de cancelamentos em TXT",
+    "source_document": "docs/test-plan.md",
+    "automated_test": "tests/data-quality/test_txt_quality.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-ETL-001",
+    "requirement": "Validar transformação e carga Source para Staging e Warehouse",
+    "source_document": "docs/data-mapping.md",
+    "automated_test": "tests/integration/test_etl_pipeline.py",
+    "evidence": "docs/test-execution-001.md",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-REC-001",
+    "requirement": "Garantir reconciliação Source-to-Target e auditoria ETL",
+    "source_document": "docs/data-mapping.md",
+    "automated_test": "tests/integration/test_etl_audit.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-DB-001",
+    "requirement": "Validar qualidade dos dados persistidos no PostgreSQL",
+    "source_document": "docs/data-quality-strategy.md",
+    "automated_test": "tests/database/test_database_quality.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-DB-002",
+    "requirement": "Validar estrutura dos schemas e tabelas PostgreSQL",
+    "source_document": "docs/test-plan.md",
+    "automated_test": "tests/database/test_database_structure.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-VOL-001",
+    "requirement": "Validar qualidade em massa de 100 mil registros",
+    "source_document": "docs/risk-analysis.md",
+    "automated_test": "tests/volume/test_large_dataset.py",
+    "evidence": ".github/workflows/data-quality-ci.yml",
+    "defects": []
+  },
+  {
+    "requirement_id": "REQ-VOL-002",
+    "requirement": "Validar qualidade em massa local de 1 milhão de registros",
+    "source_document": "docs/risk-analysis.md",
+    "automated_test": "tests/volume/test_million_records.py",
+    "evidence": "README.md",
+    "defects": []
+  }
+]
