@@ -84,3 +84,8 @@ jobs:
             reports/data-quality-metrics.json
             reports/etl-audit.json
           retention-days: 14
+
+      - name: Cleanup Docker
+        if: always()
+        run: |
+          docker compose down -v
