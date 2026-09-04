@@ -1,3 +1,4 @@
+import json
 import time
 from pathlib import Path
 
@@ -6,7 +7,9 @@ from scripts.data_quality_metrics import calcular_metricas
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data" / "generated"
+REPORTS_DIR = PROJECT_ROOT / "reports"
 
+REPORT_FILE = REPORTS_DIR / "benchmark-metrics.json"
 
 DATASETS = {
     "100K": DATA_DIR / "transacoes_100k.csv",
@@ -17,38 +20,100 @@ DATASETS = {
 def executar_benchmark():
     print("=== LARGE DATASET BENCHMARK ===")
 
+    REPORTS_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
     resultados = {}
 
     for nome, arquivo in DATASETS.items():
         if not arquivo.exists():
-            raise FileNotFoundError(
-                f"Dataset não encontrado: {arquivo}"
+            print()
+            print(
+                f"Dataset {nome} não encontrado. "
+                "Benchmark ignorado."
             )
+            continue
 
         inicio = time.perf_counter()
 
-        metricas = calcular_metricas(arquivo)
-
-        tempo = round(
-            time.perf_counter() - inicio,
-            4,
+        metricas = calcular_metricas(
+            arquivo
         )
 
-        resultados[nome] = {
+        tempo = (
+            time.perf_counter()
+            - inicio
+        )
+
+        total = metricas["total_records"]
+
+        throughput = (
+            total / tempo
+            if tempo > 0
+            else 0
+        )
+
+        resultado = {
             **metricas,
-            "processing_time_seconds": tempo,
+            "processing_time_seconds": round(
+                tempo,
+                4,
+            ),
+            "records_per_second": round(
+                throughput,
+                2,
+            ),
         }
+
+        resultados[nome] = resultado
 
         print()
         print(f"Dataset: {nome}")
-        print(f"Registros: {metricas['total_records']:,}")
-        print(f"Válidos: {metricas['valid_records']:,}")
-        print(f"Inválidos: {metricas['invalid_records']:,}")
+        print(
+            f"Registros: "
+            f"{total:,}"
+        )
+        print(
+            f"Válidos: "
+            f"{metricas['valid_records']:,}"
+        )
+        print(
+            f"Inválidos: "
+            f"{metricas['invalid_records']:,}"
+        )
         print(
             f"Data Quality Score: "
             f"{metricas['data_quality_score']}%"
         )
-        print(f"Tempo: {tempo}s")
+        print(
+            f"Tempo: "
+            f"{resultado['processing_time_seconds']}s"
+        )
+        print(
+            f"Throughput: "
+            f"{resultado['records_per_second']:,.2f} "
+            "registros/s"
+        )
+
+    with open(
+        REPORT_FILE,
+        "w",
+        encoding="utf-8",
+    ) as file:
+        json.dump(
+            resultados,
+            file,
+            indent=2,
+            ensure_ascii=False,
+        )
+
+    print()
+    print(
+        f"Relatório gerado: "
+        f"{REPORT_FILE}"
+    )
 
     return resultados
 

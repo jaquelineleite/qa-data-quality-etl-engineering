@@ -41,6 +41,10 @@ jobs:
         run: |
           python scripts/generate_quality_report.py
 
+      - name: Run dataset benchmark
+        run: |
+          python -m scripts.benchmark_large_datasets
+
       - name: Start PostgreSQL
         run: |
           docker compose up -d
@@ -83,6 +87,7 @@ jobs:
             reports/ci-data-quality-report.html
             reports/data-quality-metrics.json
             reports/etl-audit.json
+            reports/benchmark-metrics.json
           retention-days: 14
 
       - name: Cleanup Docker
