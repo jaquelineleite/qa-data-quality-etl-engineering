@@ -1,0 +1,67 @@
+name: Data Quality CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  data-quality-tests:
+    name: Data Quality & ETL Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate large dataset
+        run: |
+          python scripts/generate_large_dataset.py
+
+      - name: Generate Data Quality metrics
+        run: |
+          python scripts/generate_quality_report.py
+
+      - name: Execute ETL
+        run: |
+          python -m etl.pipeline
+
+      - name: Execute ETL audit
+        run: |
+          python -m etl.audit
+
+      - name: Run automated quality tests
+        run: |
+          python -m pytest \
+            tests/volume \
+            tests/integration \
+            tests/data-quality/test_quality_gate.py \
+            -v \
+            --html=reports/ci-data-quality-report.html \
+            --self-contained-html
+
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-quality-test-evidence
+          path: |
+            reports/ci-data-quality-report.html
+            reports/data-quality-metrics.json
+            reports/etl-audit.json
+          retention-days: 14

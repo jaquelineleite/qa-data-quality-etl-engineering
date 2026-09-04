@@ -35,11 +35,13 @@ data/generated/*
 !data/generated/.gitkeep
 
 # Versioned quality metrics
-!reports/data-quality-metrics.json
 
 # ETL generated outputs
 data/etl-output/*
 !data/etl-output/.gitkeep
 
 # Versioned ETL audit
-!reports/etl-audit.json
+
+# Generated CI / execution reports
+reports/*.json
+reports/*.html
