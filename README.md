@@ -496,12 +496,12 @@ qa-data-quality-etl-engineering/
 
 Além da massa padrão de 100 mil registros, o projeto possui validação local opcional com **1 milhão de transações sintéticas**.
 
-| Dataset | Registros válidos | Registros inválidos | Data Quality Score | Tempo de referência |
-|---|---:|---:|---:|---:|
-| 100K | 99.000 | 1.000 | 99,0% | 0,1242 s |
-| 1M | 990.000 | 10.000 | 99,0% | 1,2417 s |
+| Dataset | Registros válidos | Registros inválidos | Data Quality Score | Tempo | Throughput |
+|---|---:|---:|---:|---:|---:|
+| 100K | 99.000 | 1.000 | 99,0% | 0,1284 s | 778.679,75 registros/s |
+| 1M | 990.000 | 10.000 | 99,0% | 1,1946 s | 837.087,88 registros/s |
 
-Os resultados acima correspondem a uma execução local de referência e podem variar conforme hardware e ambiente.
+Os resultados acima correspondem a uma execução local de referência. O throughput representa a quantidade aproximada de registros processados por segundo e pode variar conforme hardware e ambiente.
 
 O dataset de 1 milhão de registros é gerado localmente e está excluído do controle de versão por meio do `.gitignore`.
 
@@ -513,6 +513,8 @@ python scripts/generate_large_dataset.py \
   --output transacoes_1m.csv
 
 python -m pytest tests/volume/test_million_records.py -v
+```
+
 A validação verifica:
 
 - 1.000.000 de registros processados;
