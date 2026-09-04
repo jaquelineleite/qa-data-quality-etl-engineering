@@ -1,0 +1,47 @@
+[
+  {
+    "transacao_id": 1001,
+    "cliente_id": 1,
+    "estabelecimento_id": 101,
+    "data_transacao": "2026-08-01T10:30:00",
+    "valor_bruto": 150.00,
+    "taxa": 5.00,
+    "status": "APROVADA"
+  },
+  {
+    "transacao_id": 1002,
+    "cliente_id": 2,
+    "estabelecimento_id": 102,
+    "data_transacao": "2026-08-01T11:00:00",
+    "valor_bruto": 250.00,
+    "taxa": 10.00,
+    "status": "APROVADA"
+  },
+  {
+    "transacao_id": 1003,
+    "cliente_id": 3,
+    "estabelecimento_id": 101,
+    "data_transacao": "2026-08-02T09:15:00",
+    "valor_bruto": 90.00,
+    "taxa": 3.00,
+    "status": "NEGADA"
+  },
+  {
+    "transacao_id": 1004,
+    "cliente_id": 4,
+    "estabelecimento_id": 103,
+    "data_transacao": "2026-08-02T14:40:00",
+    "valor_bruto": -120.00,
+    "taxa": 4.00,
+    "status": "APROVADA"
+  },
+  {
+    "transacao_id": 1005,
+    "cliente_id": 5,
+    "estabelecimento_id": 102,
+    "data_transacao": "2026-08-03T18:20:00",
+    "valor_bruto": 400.00,
+    "taxa": 20.00,
+    "status": "STATUS_INVALIDO"
+  }
+]

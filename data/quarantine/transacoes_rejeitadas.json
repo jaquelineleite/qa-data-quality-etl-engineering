@@ -1,0 +1,29 @@
+[
+  {
+    "transacao_id": 1004,
+    "cliente_id": 4,
+    "estabelecimento_id": 103,
+    "data_transacao": "2026-08-02T14:40:00",
+    "valor_bruto": -120.0,
+    "taxa": 4.0,
+    "status": "APROVADA",
+    "quality_status": "REJECTED",
+    "rejection_reasons": [
+      "INVALID_GROSS_AMOUNT",
+      "FEE_EXCEEDS_GROSS_AMOUNT"
+    ]
+  },
+  {
+    "transacao_id": 1005,
+    "cliente_id": 5,
+    "estabelecimento_id": 102,
+    "data_transacao": "2026-08-03T18:20:00",
+    "valor_bruto": 400.0,
+    "taxa": 20.0,
+    "status": "STATUS_INVALIDO",
+    "quality_status": "REJECTED",
+    "rejection_reasons": [
+      "INVALID_STATUS"
+    ]
+  }
+]

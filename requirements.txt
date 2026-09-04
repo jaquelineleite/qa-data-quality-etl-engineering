@@ -1,0 +1,6 @@
+pytest
+pandas
+openpyxl
+psycopg2-binary
+Faker
+pytest-html

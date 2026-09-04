@@ -1,0 +1,6 @@
+cliente_id,nome,cpf,email,cidade,estado,data_cadastro
+1,Ana Souza,12345678901,ana.souza@email.com,Sao Paulo,SP,2026-01-10 09:00:00
+2,Bruno Lima,23456789012,bruno.lima@email.com,Campinas,SP,2026-02-15 10:30:00
+3,Carla Mendes,34567890123,carla.mendes@email.com,Osasco,SP,2026-03-20 14:10:00
+4,Diego Santos,45678901234,,Sorocaba,SP,2026-04-05 11:20:00
+5,Elisa Rocha,56789012345,elisa.rocha@email.com,Sao Paulo,SP,2026-05-11 16:45:00
