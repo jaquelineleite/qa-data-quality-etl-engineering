@@ -228,7 +228,7 @@ python -m pytest \
 Resultado atual no CI:
 
 ```text
-47 passed
+55 passed
 1 skipped (benchmark opcional de 1M)
 ```
 
@@ -289,6 +289,10 @@ sas/
 ---
 
 ## Formatos de Dados
+
+
+O projeto possui validações automatizadas para **CSV, JSON, TXT e Excel**, incluindo schema, campos obrigatórios, duplicidade, domínio, integridade e consistência entre arquivos.
+
 
 Atualmente o projeto trabalha com:
 
@@ -461,6 +465,7 @@ qa-data-quality-etl-engineering/
 - [x] GitHub Actions
 - [x] Evidências automatizadas
 - [x] Excel validation
+- [x] TXT automated validation
 - [x] PostgreSQL runtime integration
 - [x] Docker integration
 - [x] Database automated tests
